@@ -1,17 +1,20 @@
 # Makefile for Pinocchio
 CC = g++
-CCFLAGS = -c -O3 -Wall -w -fPIC -fpermissive
-LIBS = -lm -shared -fPIC
+CCFLAGS = -c -O3 -Wall -w -fPIC -fpermissive -std=c++17
+EXE_LIBS = -lm
+SHARED_LIBS = -lm -shared -fPIC
 
 OBJECTS = attachment.o discretization.o indexer.o lsqSolver.o mesh.o \
 	graphutils.o intersector.o matrix.o skeleton.o embedding.o \
 	pinocchioApi.o refinement.o quatinterface.o processor.o
 
+all: Processor libpinocchio.so
+
 Processor: $(OBJECTS)
-	$(CC) $(OBJECTS) $(LIBS) -o Processor
+	$(CC) $(OBJECTS) $(EXE_LIBS) -o Processor
 
 libpinocchio.so: $(OBJECTS)
-	$(CC) $(OBJECTS) $(LIBS) -o libpinocchio.so
+	$(CC) $(OBJECTS) $(SHARED_LIBS) -o libpinocchio.so
 
 .cpp.o:
 	$(CC) $(CCFLAGS) $<

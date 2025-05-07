@@ -23,6 +23,9 @@ THE SOFTWARE.
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
-void process(const vector<string> &args);
+#include <vector>
+#include <string>
+
+void process(const std::vector<std::string> &args);
 
 #endif //PROCESSOR_H
