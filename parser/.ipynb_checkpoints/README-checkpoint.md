@@ -1,1 +1,0 @@
-# GLTF 2.0 Parser
